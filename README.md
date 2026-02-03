@@ -215,7 +215,7 @@ Proprietary - All rights reserved.
 
 ---
 
-**Semarx Research** | [semarx.com](https://www.semarx.com)fficial framework for the Semarx Information Digital Twin (IDT). A model-agnostic governance layer that stops agentic drift by measuring the "Bi-Predictability" of every action.
+**Semarx Research** | [semarx.com](https://www.semarx.com) official framework for the Semarx Information Digital Twin (IDT). A model-agnostic governance layer that stops agentic drift by measuring the "Bi-Predictability" of every action.
 
 
 
