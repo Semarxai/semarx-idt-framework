@@ -5,7 +5,7 @@ The o# IDT Monitoring System
 
 ## Overview
 
-A framework for monitoring reinforcement learning agent robustness using information-theoretic metrics. The system computes Predictive Coherence (P) in real-time to detect when an agent's behavior degrades under perturbations, and can automatically trigger corrective interventions.
+A framework for monitoring reinforcement learning agent robustness using information-theoretic metrics. The system computes Bi-predictability (P) in real-time to detect when an agent's behavior degrades under perturbations, and can automatically trigger corrective interventions.
 
 ## Capabilities
 
@@ -72,7 +72,7 @@ The trajectory log is the core output of the IDT monitoring system. Every comput
 | t | Step within episode (0 to 1000) |
 | regime | Perturbation active (0=off, 1=on) |
 | intervention_regime | Intervention active (0=off, 1=on) |
-| P | Predictive coherence at this step (computed every 50 steps) |
+| P | Bi-predictability at this step (computed every 50 steps) |
 | s_0 to s_16 | 17-dimensional state observation |
 | a_0 to a_5 | 6-dimensional action |
 | reward | Step reward |
@@ -144,7 +144,7 @@ See `Analysis_Notebooks/RL_Analysis_FINAL_gitHub.ipynb` for detailed analysis ex
 
 ## Technical Details
 
-### Predictive Coherence (P)
+### Bi-predictability (P)
 
 P measures how well the agent's state-action pairs predict next states:
 
@@ -224,12 +224,12 @@ Proprietary - All rights reserved.
 
 IDT-LLM: Information-Theoretic Metrics for LLM Conversation Coherence
 Overview
-This repository contains the code and experimental framework for evaluating Predictive Coherence (P) as a content-agnostic metric for monitoring agent-environment coupling in Large Language Model (LLM) conversations.
+This repository contains the code and experimental framework for evaluating Bi-predictability (P) as a content-agnostic metric for monitoring agent-environment coupling in Large Language Model (LLM) conversations.
 
 P is an information-theoretic measure that captures mutual predictability between conversation states without requiring semantic analysis, embeddings, or external evaluation models.
 
 Theoretical Background
-Predictive Coherence (P)
+Bi-predictability (P)
 P measures how well the current state-action pair predicts the next state:
 
 P = MI(S,A; S') / (H(S) + H(A) + H(S'))
@@ -261,7 +261,7 @@ H(S)	Shannon entropy of S	Context diversity
 H(A)	Shannon entropy of A	Response diversity
 H(S')	Shannon entropy of S'	Prompt diversity
 MI(S;A)	H(S) + H(A) - H(S,A)	Context-response coupling
-P	MI(S,A;S') / [H(S) + H(A) + H(S')]	Predictive coherence
+P	MI(S,A;S') / [H(S) + H(A) + H(S')]	Bi-predictability
 Hf	H(S,A,S') - H(S,A)	Forward uncertainty
 Hb	H(S,A,S') - H(S')	Backward uncertainty
 Delta	Hf - Hb	Information asymmetry
@@ -295,7 +295,7 @@ H_SA	float	H(S,A)	Joint entropy of state and action
 H_SAS_prime	float	H(S,A,S')	Joint entropy of state, action, and next state
 MI_SA_Sprime	float	MI(S,A; S')	Mutual information between state-action pair and next state
 MI_S_A	float	MI(S; A)	Mutual information between state and action
-P	float	MI(S,A;S') / (H(S)+H(A)+H(S'))	Predictive Coherence — primary metric (range: 0-1)
+P	float	MI(S,A;S') / (H(S)+H(A)+H(S'))	Bi-predictability — primary metric (range: 0-1)
 Hf	float	H(S'|S,A)	Forward entropy — uncertainty about next state given current state-action
 Hb	float	H(S,A|S')	Backward entropy — uncertainty about state-action given next state
 Delta	float	Hf - Hb	Temporal asymmetry — negative values indicate agentic behavior
@@ -322,7 +322,7 @@ cumulative_drift	float	Cosine similarity between current response and first resp
 score_openai	float	LLM-as-Judge quality score (1-7 scale, GPT-4)
 explanation_openai	string	GPT-4's explanation for the assigned score
 Metric Interpretation Guide
-P (Predictive Coherence)
+P (Bi-predictability)
 Value	Interpretation
 ~0.27	Normal baseline for LLM conversations
 < 0.22	Potential coupling disruption
@@ -583,7 +583,7 @@ Self-correcting agents: Systems that adjust behavior when P drops
 Lightweight deployment: No embedding models required
 Citation
 @article{author2025predictive,
-  title={Predictive Coherence: An Information-Theoretic Metric for Agent-Environment Coupling},
+  title={Bi-predictability: An Information-Theoretic Metric for Agent-Environment Coupling},
   author={[Author Names]},
   journal={[Journal]},
   year={2025}
